@@ -3,7 +3,8 @@ from flask_pymongo import PyMongo
 import scrape_mars
 
 app = Flask(__name__)
-
+# app.config['MONGO_DBNAME'] = 'mars_scrapping'
+# app.config['MONGO_URI'] = 'mongodb://kingbrew:Peeka1993+@ds239047.mlab.com:39047/mars_scrapping'
 mongo = PyMongo(app)
 
 @app.route('/')
@@ -20,7 +21,7 @@ def scrape():
     scrapping_data,
     upsert=True
     )
-    return redirect('http://localhost:27017/', code=302)
+    return redirect('http://localhost:5000/', code=302)
 
 if __name__ == "__main__":
-    app.run(port=27017,debug=True)
+    app.run(debug=True)

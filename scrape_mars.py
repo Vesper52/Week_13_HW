@@ -61,6 +61,8 @@ def scrape():
     tables = pd.read_html(url)
     df = tables[0]
     df.columns = ['Planet Profile', 'Values']
+    html_table = df.to_html()
+    html_table.replace('\n', '')
 
 
 
@@ -71,10 +73,10 @@ def scrape():
         {"title": "Schiaparelli Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg"},
         {"title": "Syrtis Major Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg"},
     ]
-    
-    scrap_dict['news_title']= news_title
-    scrap_dict['news paragraph'] = news_p
-    scrap_dict['table']=df
-    scrap_dict['mars pics']=hemisphere_image_urls
-    return(scrap_dict)
 
+    scrap_dict['news_title']= news_title
+    scrap_dict['featured_img']=featured_image_url
+    scrap_dict['news_paragraph'] = news_p
+    scrap_dict['table']=html_table
+    scrap_dict['mars_pics']=hemisphere_image_urls
+    return(scrap_dict)
